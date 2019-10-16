@@ -243,7 +243,7 @@ There are two things you can do about this warning:
 (use-package conda
   :ensure t
   :init
-  (setq conda-anaconda-home (expand-file-name "~/.conda/"))
+  (setq conda-anaconda-home (expand-file-name "~/anaconda3/"))
   :config
   ;; If you want interactive shell support, include:
   (conda-env-initialize-interactive-shells)
@@ -258,14 +258,12 @@ There are two things you can do about this warning:
   )
 
 (elpy-enable)
-(defun py34c ()
-  (interactive)
-  (pyvenv-activate "~/.conda/envs/py34c/")
-  )
+
+;; Remove indentation highlight
+(add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
 
 ;; (add-hook 'python-mode-hook 'anaconda-mode)
 ;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
 (setq python-shell-interpreter "jupyter"
       python-shell-interpreter-args "console --simple-prompt"
       python-shell-prompt-detect-failure-warning nil)
